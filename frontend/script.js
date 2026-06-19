@@ -1,55 +1,32 @@
 document
-.getElementById("loginForm")
-.addEventListener("submit", async function(e){
+  .getElementById("loginForm")
+  .addEventListener("submit", function (e) {
 
-e.preventDefault();
+    e.preventDefault();
 
-const email =
-document.getElementById("email").value;
+    const email =
+      document.getElementById("email").value;
 
-const password =
-document.getElementById("password").value;
+    const password =
+      document.getElementById("password").value;
 
-try{
+    if (
+      email !== "" &&
+      password === "admin123"
+    ) {
+      localStorage.setItem(
+        "userEmail",
+        email
+      );
 
-const response = await fetch(
-"http://localhost:5000/api/auth/login",
-{
-method:"POST",
+      window.location.href =
+        "dashboard.html";
 
-headers:{
-"Content-Type":"application/json"
-},
+    } else {
 
-body:JSON.stringify({
-email,
-password
-})
-}
-);
-
-const data =
-await response.json();
-
-if(data.success){
-
-window.location.href =
-"dashboard.html";
-
-}else{
-
-document.getElementById(
-"message"
-).innerText =
-data.message;
-}
-
-}catch(error){
-
-document.getElementById(
-"message"
-).innerText =
-"Server Error";
-}
-
-});
+      document.getElementById(
+        "message"
+      ).innerText =
+        "Invalid Email or Password";
+    }
+  });
