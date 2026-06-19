@@ -23,8 +23,34 @@
 </div>
 
 <div class="main-content">
-<h1 style="color:#d4af37;">Settings Page</h1>
-</div>
+<h1 style="color:#d4af37;">Settings</h1>
 
+<div class="card">
+
+  <h3>Admin Information</h3>
+
+  <br>
+
+  <input
+    type="text"
+    id="adminName"
+    placeholder="Admin Name"
+    style="width:100%;padding:12px;margin-bottom:15px;"
+  >
+
+  <input
+    type="password"
+    id="adminPassword"
+    placeholder="New Password"
+    style="width:100%;padding:12px;margin-bottom:15px;"
+  >
+
+  <button onclick="saveSettings()">
+    Save Settings
+  </button>
+
+</div>
+</div>
+<script src="settings.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (e) {
-
     e.preventDefault();
 
     const email =
@@ -10,9 +9,13 @@ document
     const password =
       document.getElementById("password").value;
 
+    const savedPassword =
+      localStorage.getItem("adminPassword") ||
+      "admin123";
+
     if (
       email !== "" &&
-      password === "admin123"
+      password === savedPassword
     ) {
       localStorage.setItem(
         "userEmail",
@@ -21,9 +24,7 @@ document
 
       window.location.href =
         "dashboard.html";
-
     } else {
-
       document.getElementById(
         "message"
       ).innerText =
