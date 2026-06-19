@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transactions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-body">
+
+<div class="sidebar">
+  <h2>Finance Hub</h2>
+
+  <ul>
+    <li onclick="location.href='dashboard.html'">🏠 Dashboard</li>
+    <li onclick="location.href='investment.html'">💰 Investments</li>
+    <li onclick="location.href='members.html'">👥 Members</li>
+    <li onclick="location.href='analytics.html'">📊 Analytics</li>
+    <li onclick="location.href='transactions.html'">💳 Transactions</li>
+    <li onclick="location.href='settings.html'">⚙ Settings</li>
+    <li onclick="location.href='index.html'">🚪 Logout</li>
+  </ul>
+</div>
+
+<div class="main-content">
+
+  <h1 style="color:#d4af37;">
+    Transactions
+  </h1>
+
+  <br>
+
+  <div class="card">
+
+    <h3>Add Transaction</h3>
+
+    <br>
+
+    <input
+      type="text"
+      id="personName"
+      placeholder="Member Name"
+      style="width:100%;padding:12px;margin-bottom:10px;"
+    >
+
+    <input
+      type="number"
+      id="amount"
+      placeholder="Amount"
+      style="width:100%;padding:12px;margin-bottom:10px;"
+    >
+
+    <button onclick="addTransaction()">
+      Add Transaction
+    </button>
+
+  </div>
+
+  <br>
+
+  <div class="card">
+
+    <h3>Total Transactions</h3>
+
+    <h2
+      id="totalTransactions"
+      style="color:#d4af37;"
+    >
+      ₹0
+    </h2>
+
+  </div>
+
+  <br>
+
+  <div class="card">
+
+    <h3>Transaction List</h3>
+
+    <ul id="transactionList"></ul>
+
+  </div>
+
+</div>
+
+<script src="transactions.js"></script>
+
+</body>
+</html>
