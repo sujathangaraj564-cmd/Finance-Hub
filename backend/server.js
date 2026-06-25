@@ -1,30 +1,39 @@
+require("dotenv").config();
+
+const path = require("path");
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config({ path: "./.env" });
 
 const authRoutes = require("./routes/auth");
+const dataRoutes = require("./routes/data");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", authRoutes);
+if (process.env.MONGO_URL) {
+  mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+    .then(() => console.log("MongoDB Connected Successfully 🚀"))
+    .catch(err => console.log("MongoDB Connection Error ❌", err));
+} else {
+  console.warn("MONGO_URL not configured. Auth will still work with default demo credentials.");
+}
 
-// Test Route
-app.get("/", (req, res) => {
-  res.send("Finance Hub Backend Running Successfully");
+app.use("/api/auth", authRoutes);
+app.use("/api/data", dataRoutes);
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// Port
-const PORT = process.env.PORT || 5000;
-
-const connectDB = require("./database");
-
-connectDB();
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
